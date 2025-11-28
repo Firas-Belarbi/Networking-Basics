@@ -2,139 +2,226 @@
   <img src="https://raw.githubusercontent.com/Firas-Belarbi/Networking-Basics/main/Concepts%20de%20R%C3%A9seau%20et%20Cybers%C3%A9curit%C3%A9.png" width="100%" alt="Networking Banner">
 </p>
 
-<h1 align="center">Networking Basics — Summary Notes</h1>
-
+<h1 align="center">📡 Networking Basics — Summary Notes</h1>
 <p align="center">
-  Foundations of computer networking, written from the perspective of a cybersecurity student.
+  Foundations of modern computer networking — written from the perspective of a cybersecurity student.
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Level-Beginner-blue?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Category-Networking-green?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/TryHackMe-Networking%20Rooms-red?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Level-Beginner-blue?style=flat-square">
+  <img src="https://img.shields.io/badge/Category-Networking-green?style=flat-square">
+  <img src="https://img.shields.io/badge/Platform-TryHackMe-red?style=flat-square">
+  <img src="https://img.shields.io/badge/Labs-Included-orange?style=flat-square">
 </p>
 
 ---
 
-# 📌 1. Introduction
+# 📘 Table of Contents
 
-Networking is the foundation of all modern communication systems.  
-Understanding it is essential for cybersecurity, ethical hacking, system administration, and cloud technologies.
+- [1. Introduction](#1-introduction)
+- [2. OSI Model](#2-osi-model-open-systems-interconnection)
+- [3. TCP/IP Model](#3-tcpip-model-internet-stack)
+- [4. Ports & Protocols](#4-ports--protocols)
+- [5. Packet Structure](#5-packet-structure)
+- [6. Wireshark Basics](#6-wireshark-basics)
+- [7. Nmap CheatSheet](#7-nmap-cheatsheet)
+- [8. Advanced Networking Concepts](#8-advanced-networking-concepts)
+- [9. Packet Life Journey](#9-packet-life-journey)
+- [10. Author](#10-author)
 
-This repository is a clean, organized collection of my learning notes from:
+---
 
-- TryHackMe Rooms  
-- Hands-on labs  
-- Cybersecurity training  
+# 🔥 1. Introduction
+
+Networking is the foundation of all communication systems.  
+Understanding it is essential for:
+
+- Cybersecurity  
+- Ethical hacking  
+- SOC analysis  
+- Penetration testing  
+- System administration
+
+This repo is a clean, organized collection of notes from:
+
+- TryHackMe networking rooms  
 - University networking courses  
+- Hands-on labs  
+- Wireshark captures  
+- TCP/IP analysis  
 
 ---
 
-# 📡 2. OSI Model (Open Systems Interconnection)
+# 🛰️ 2. OSI Model (Open Systems Interconnection)
 
-| Layer | Name           | Description |
-|------|----------------|-------------|
-| 7 | Application | Protocols used by end-user apps (HTTP, DNS, SMTP) |
+| Layer | Name | Description |
+|------|------|-------------|
+| 7 | Application | End-user protocols (HTTP, DNS, SMTP) |
 | 6 | Presentation | Encoding, encryption, compression |
-| 5 | Session | Opens/closes sessions between hosts |
+| 5 | Session | Manages sessions between hosts |
 | 4 | Transport | TCP/UDP, segmentation, reliability |
-| 3 | Network | Routing, IP addressing, ICMP |
-| 2 | Data Link | MAC addresses, switches, frames |
-| 1 | Physical | Cables, radio signals, bits |
-
-### Key Points:
-- Layer 3 = IP + Routing  
-- Layer 4 = TCP/UDP + Ports  
-- Layer 2 = MAC + Switching  
+| 3 | Network | Routing, IP addresses, ICMP |
+| 2 | Data Link | MAC addresses, frames |
+| 1 | Physical | Bits, cables, radio |
 
 ---
 
-# 🌐 3. TCP/IP Model
+# 🌐 3. TCP/IP Model (Internet Stack)
 
-| TCP/IP Layer | OSI Equivalent | Examples |
-|--------------|----------------|----------|
-| Application | L5–7 | HTTP, HTTPS, DNS |
-| Transport | L4 | TCP, UDP |
-| Internet | L3 | IP, ICMP |
-| Link | L1–2 | Ethernet, Wi-Fi |
-
----
-
-# 🔢 4. Data Encapsulation
-
-### When sending data:
-Application → Transport (TCP/UDP) → Network (IP) → Data Link (Frame) → Physical (Bits)
-
-### Data unit names:
-- Application → Data  
-- Transport → Segment / Datagram  
-- Network → Packet  
-- Data Link → Frame  
-- Physical → Bits  
+| Layer | Equivalent in OSI | Examples |
+|------|-------------------|----------|
+| Application | 5–7 | HTTP, DNS, FTP, SSH |
+| Transport | 4 | TCP, UDP |
+| Internet | 3 | IP, ICMP, IPSec |
+| Network Access | 1–2 | Ethernet, Wi-Fi |
 
 ---
 
-# 🌍 5. IPv4 Addressing & Subnetting
+# 🔌 4. Ports & Protocols
 
-### Basic concepts:
-- IPv4 = 32-bit address  
-- Format: A.B.C.D  
-- Example: 192.168.1.45
+| Port | Protocol | Description |
+|------|----------|-------------|
+| 22 | SSH | Secure remote login |
+| 53 | DNS | Name resolution |
+| 80 | HTTP | Web traffic |
+| 443 | HTTPS | Encrypted web |
+| 67/68 | DHCP | IP assignment |
+| 25 | SMTP | Email sending |
+| 110 | POP3 | Email retrieval |
+| 445 | SMB | Windows file sharing |
 
-### CIDR Examples:
-| CIDR | Netmask | Hosts |
-|------|---------|--------|
-| /24 | 255.255.255.0 | 254 hosts |
-| /16 | 255.255.0.0 | 65,534 hosts |
-| /8  | 255.0.0.0     | 16+ million hosts |
+**Port Ranges**
 
-### Private IP ranges:
-- 10.0.0.0/8  
-- 172.16.0.0/12  
-- 192.168.0.0/16  
-
----
-
-# 🚦 6. Ports & Protocols
-
-### TCP (reliable & connection-oriented):
-- 22 SSH  
-- 80 HTTP  
-- 443 HTTPS  
-- 3389 RDP  
-
-### UDP (fast & connectionless):
-- 53 DNS  
-- 67/68 DHCP  
-- 123 NTP  
+- **0–1023** → Well-known  
+- **1024–49151** → Registered  
+- **49152–65535** → Dynamic  
 
 ---
 
-# 🔍 7. Packet Analysis (Wireshark)
+# 📦 5. Packet Structure
 
-Things to check:
-- Source & Destination IP  
-- TCP Flags (SYN, ACK, FIN)  
-- Protocol  
-- Layer 7 content (HTTP/DNS)  
-- Packet length & timing  
+[ Ethernet Frame ]
+├── Dest MAC
+├── Source MAC
+├── EtherType
+└── [ IP Packet ]
+├── Src/Dst IP
+├── TTL
+├── Protocol (TCP/UDP)
+└── [ TCP/UDP Segment ]
+├── Src/Dst Ports
+├── Flags
+└── [ Application Data ]
 
-Useful filters:
+
+---
+
+# 🧪 6. Wireshark Basics
+
+**Useful Filters:**
+
 http
-tcp.flags.syn == 1
 dns
-ip.addr == 192.168.1.10
+tcp.flags.syn == 1
+tcp.port == 80
+udp.port == 53
+ip.addr == 192.168.1.1
+
+
+
+**Shortcuts:**
+
+- Follow → TCP Stream  
+- Apply as Filter → Selected  
+- Statistics → Protocol Hierarchy  
+
+---
+
+# 🛰️ 7. Nmap CheatSheet
+
+nmap -sV -sC IP
+nmap -p- IP
+nmap -A IP
+nmap -Pn IP
+nmap --script vuln IP
 
 
 
 ---
 
-# 📡 8. Nmap Essentials
+# 🚀 8. Advanced Networking Concepts
 
-Common scans:
-nmap -sV -sC TARGET
-nmap -p- TARGET
-nmap -A TARGET
-nmap --top-ports 1000 TARGET
+## 🔵 ARP (Address Resolution Protocol)
+
+Maps **IP → MAC address**
+
+arp -a # View ARP cache
 
 
+
+**ARP Cache Example:**
+
+| IP | MAC | Type |
+|----|------|------|
+| 192.168.1.1 | 00:11:22:33:44:55 | Dynamic |
+| 192.168.1.10 | aa:bb:cc:dd:ee:ff | Static |
+
+---
+
+## 🔵 DNS Resolution Flow
+
+Client → Resolver → Root → TLD → Authoritative → Response
+
+
+---
+
+## 🔵 DHCP (DORA)
+
+- Discover  
+- Offer  
+- Request  
+- Acknowledge  
+
+---
+
+## 🔵 NAT Types
+
+- **SNAT** → Change Source IP  
+- **DNAT** → Change Destination IP  
+- **PAT** → Many→One (Router uses one public IP)
+
+---
+
+## 🔵 VLANs Basics
+
+- Traffic segmentation  
+- Access vs Trunk ports  
+- VLAN ID tagging (802.1Q)
+
+---
+
+## 🔵 Routing Overview
+
+- **Static Routing**  
+- **Dynamic Routing** → OSPF, EIGRP, RIP  
+- **Distance Vector vs Link State**
+
+---
+
+# 🧭 9. Packet Life Journey
+
+Application → Transport → Network → Data Link → Physical
+Bits → Cable/WiFi → Switch → Router → Internet → Server
+
+
+
+---
+
+# 🖊️ 10. Author
+
+**Firas Belarbi**  
+CyberSecurity Student  
+
+📌 *This repo is part of my cybersecurity learning roadmap (Networking → Linux → Cryptography → SOC).*
+
+---
