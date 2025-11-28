@@ -78,15 +78,15 @@ Application → Transport (TCP/UDP) → Network (IP) → Data Link (Frame) → P
 
 ### Basic concepts:
 - IPv4 = 32-bit address  
-- Format: `A.B.C.D`  
-- Example: `192.168.1.45`
+- Format: A.B.C.D  
+- Example: 192.168.1.45
 
 ### CIDR Examples:
 | CIDR | Netmask | Hosts |
 |------|---------|--------|
 | /24 | 255.255.255.0 | 254 hosts |
 | /16 | 255.255.0.0 | 65,534 hosts |
-| /8 | 255.0.0.0 | 16+ million hosts |
+| /8  | 255.0.0.0     | 16+ million hosts |
 
 ### Private IP ranges:
 - 10.0.0.0/8  
@@ -97,13 +97,13 @@ Application → Transport (TCP/UDP) → Network (IP) → Data Link (Frame) → P
 
 # 🚦 6. Ports & Protocols
 
-### TCP (reliable):
+### TCP (reliable & connection-oriented):
 - 22 SSH  
 - 80 HTTP  
 - 443 HTTPS  
 - 3389 RDP  
 
-### UDP (fast):
+### UDP (fast & connectionless):
 - 53 DNS  
 - 67/68 DHCP  
 - 123 NTP  
@@ -136,4 +136,5 @@ nmap -sV -sC TARGET
 nmap -p- TARGET
 nmap -A TARGET
 nmap --top-ports 1000 TARGET
+
 
